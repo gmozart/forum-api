@@ -18,7 +18,7 @@ public class RespostaDTO {
     private Long id;
     private String mensagem;
     private Topico topico;
-    private LocalDateTime dataCriacao = LocalDateTime.now();
+    private LocalDateTime dataCriacao;
     private Usuario autor;
     private Boolean solucao = false;
 
@@ -32,7 +32,6 @@ public class RespostaDTO {
                 .solucao(resposta.getSolucao())
                 .build();
     }
-
     public static  Resposta of(RespostaDTO respostaDTO){
         return Resposta.builder()
                 .id(respostaDTO.getId())
@@ -42,13 +41,10 @@ public class RespostaDTO {
                 .solucao(respostaDTO.getSolucao())
                 .build();
     }
-
     public Optional<RespostaDTO> of(Optional<Resposta> resposta){
         return  resposta.stream().map(RespostaDTO::of).findAny();
     }
-
     public List<RespostaDTO> of(List<Resposta> respostas){
         return respostas.stream().map(RespostaDTO::of).collect(Collectors.toList());
     }
-
 }
